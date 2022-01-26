@@ -69,7 +69,7 @@ describe('BUP', async function () {
 
     const tknBalance = await getBalance(walletAddress);
 
-    console.log(`TKN Balance of ${walletAddress}: `, tknBalance);
+    expect(tknBalance).to.equal(amount.toString());
   });
 
   it('#3 Sweep token', async function () {

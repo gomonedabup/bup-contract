@@ -2,7 +2,7 @@
 
 BUP 코인 & 지갑 컨트랙트, Hardhat 개발환경
 
-BUP 코인
+BUP 컨트랙트
 
 - ERC20 스펙
 
