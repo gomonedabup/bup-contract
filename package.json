@@ -1,4 +1,11 @@
 {
+  "scripts": {
+    "node": "./node_modules/.bin/hardhat node",
+    "compile": "./node_modules/.bin/hardhat compile",
+    "deploy": "./node_modules/.bin/hardhat deploy",
+    "contracts": "./node_modules/.bin/hardhat contracts",
+    "accounts": "./node_modules/.bin/hardhat accounts"
+  },
   "name": "hardhat-project",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",

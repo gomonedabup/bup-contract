@@ -42,6 +42,7 @@ contract Token {
 /**
  * 토큰 전송 컨트랙트
  * 입금용 사용자 지갑에서 요청되어 처리
+ * 표준화된 토큰 전송
  */
 contract DefaultSweeper is AbstractSweeper {
     function DefaultSweeper(address controller) AbstractSweeper(controller) {}
@@ -104,7 +105,7 @@ contract UserWallet {
 
     /**
      * 토큰 관리용 계정을 전송
-     * 토큰 전송을 위해 sweeper에게 요청함
+     * 토큰 전송을 위해 sweeper에게 요청함(DefaultSweeper)
      */
     function sweep(address _token, uint256 _amount) returns (bool) {
         (_amount);
@@ -184,12 +185,17 @@ contract Controller is AbstractSweeperList {
     address public defaultSweeper = address(new DefaultSweeper(this));
     mapping(address => address) sweepers;
 
+    /**
+     * 토큰에 따른 sweeper 추가
+     * 토큰에 따라 표준 인터페이스가 아닐 수 있기 때문에 sweeper 변경할 수 있게 되어 있음
+     */
     function addSweeper(address _token, address _sweeper) onlyOwner {
         sweepers[_token] = _sweeper;
     }
 
     /**
-     * 토큰 전송 컨트랙트 가져오기
+     * Sweeper(토큰 전송 컨트랙트) 가져오기
+     * 특정 토큰에 따라 sweeper 지정될 수 있음
      */
     function sweeperOf(address _token) returns (address) {
         address sweeper = sweepers[_token];
