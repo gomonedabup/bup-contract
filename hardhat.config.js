@@ -1,4 +1,5 @@
 require('@nomiclabs/hardhat-waffle');
+require('dotenv').config();
 const fs = require('fs');
 
 function getContractAddress() {
@@ -101,6 +102,9 @@ task('balance', 'BUP 보유 수량 확인')
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
+const alchemyApiKey = process.env.ALCHEMY_API_KEY;
+const privateKey = process.env.PRIVATE_KEY;
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -110,6 +114,10 @@ module.exports = {
     hardhat: {},
     localhost: {
       url: 'http://localhost:8545',
+    },
+    rinkeby: {
+      url: `https://eth-rinkeby.alchemyapi.io/v2/${alchemyApiKey}`,
+      accounts: [privateKey],
     },
   },
   solidity: { compilers: [{ version: '0.4.11' }, { version: '0.5.0' }] },
