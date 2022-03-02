@@ -1,8 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.4.11;
 
-// Copyright 2017 Bittrex
-
 contract AbstractSweeper {
     function sweep(address token, uint256 amount) returns (bool);
 
